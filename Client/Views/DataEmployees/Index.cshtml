@@ -1,0 +1,278 @@
+﻿@{
+    Layout = "_LayoutEmployee";
+}
+<div class="card">
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-12">
+                <br />
+                <div class="button">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#formModal">
+                        <i class="fas fa-plus-square"></i> &nbsp; Register
+                    </button>
+                    <button type="button" class="btn btn-success" onclick="ExportTable()">Excel</button>
+                    @*<button type="button" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="PDF"><i class="fas fa-file-pdf"></i></button>*@
+                    <br />
+                    <br />
+                </div>
+
+                <div class="card shadow mb-4">
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover" id="example">
+                                <thead class="thead" style="background-color: #B7A99A ">
+                                    <tr>
+                                        <th scope="col">No</th>
+                                        <th scope="col">NIK</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Phone</th>
+                                        <th scope="col">Salary</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Gender</th>
+                                        <th scope="col">Action   </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="dataEmployeAPI">
+                                </tbody>
+                            </table>
+
+                            <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document" style="width:2500px;">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Insert Data Employe</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form id="DataEmploye">
+                                                <div class="form-group">
+                                                    <label for="inputNIK">&nbsp; NIK</label>
+                                                    <input type="text" class="form-control" id="inputNIK" name="inputNIK">
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <label for="inputFirstName">&nbsp; First Name</label>
+                                                        <input type="text" class="form-control" id="inputFirstName" name="inputFirstName">
+                                                    </div>
+                                                    <div class="col">
+                                                        <label for="inputLastName">&nbsp; Last Name</label>
+                                                        <input type="text" class="form-control" id="inputLastName" name="inputLastName">
+                                                    </div>
+                                                </div>
+                                                <br />
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <label for="inputPhone">&nbsp; Phone Number</label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text">+62</span>
+                                                            </div>
+                                                            <input type="text" class="form-control" id="inputPhone" name="inputPhone">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <label for="ttl">&nbsp; Birth Date</label>
+                                                        <input type="date" class="form-control" id="ttl">
+                                                    </div>
+                                                </div>
+                                                <br />
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <label for="inputSalary">&nbsp; Salary</label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text">Rp.</span>
+                                                            </div>
+                                                            <input type="tel" class="form-control" id="inputSalary" name="inputSalary">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <label for="inputEmail">&nbsp; Email</label>
+                                                        <input type="email" class="form-control" id="inputEmail" name="inputEmail" placeholder="example@gmail.com">
+                                                    </div>
+                                                </div>
+                                                <br />
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <label for="Password">&nbsp; Password</label>
+                                                        <input type="password" class="form-control" id="Password" name="Password">
+                                                    </div>
+                                                    <div class="col">
+                                                        <label for="Degree">&nbsp;Degree</label>
+                                                        <select class="form-control" id="Degree" name="Degree">
+                                                            <option>Under Graduate</option>
+                                                            <option>Graduate</option>
+                                                            <option>Bachelors Degree</option>
+                                                            <option>Master Degree</option>
+                                                            <option>Doctorol</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <br />
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <label for="Gpa">&nbsp; GPA</label>
+                                                        <input type="text" class="form-control" id="Gpa" name="Gpa" placeholder="4.00">
+                                                    </div>
+                                                    <div class="col">
+                                                        <label for="University">&nbsp;University</label>
+
+                                                        <select id="University" class="form-control">
+                                                            <option selected>Choose...</option>
+                                                            <option>...</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <br />
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <label for="Gender">&nbsp; Gender</label>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="Gender" type="radio" name="inlineRadioOptions" value="0">
+                                                            <label class="form-check-label" for="inlineRadio1">Male</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="Gender" type="radio" name="inlineRadioOptions" value="1" checked>
+                                                            <label class="form-check-label" for="inlineRadio2">Female</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary" id="clickBtn" onclick="Validation();">Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="modal fade" id="ModalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Data Update</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form id="DataEmploye2">
+                                                <div class="form-group row">
+                                                    <label for="inputNIK2" class="col-sm-3 col-form-label">NIK</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" id="inputNIK2" name="inputNIK2" placeholder="NIK">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="inputFirstName2" class="col-sm-3 col-form-label">First Name</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" id="inputFirstName2" name="inputFirstName2" placeholder="First Name">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="inputLastName2" class="col-sm-3 col-form-label">Last Name</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" id="inputLastName2" name="inputLastName2" placeholder="Last Name">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="inputPhone2" class="col-sm-3 col-form-label">Phone</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" id="inputPhone2" name="inputPhone2" placeholder="+62">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="ttl" class="col-sm-3 col-form-label">Birth Date</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                                            </div>
+                                                            <input type="date" class="form-control" id="ttl2">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="inputSalary2" class="col-sm-3 col-form-label">Salary</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" id="inputSalary2" name="inputSalary2" placeholder="Rp.0,-">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="inputEmail2" class="col-sm-3 col-form-label">Email</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="email" class="form-control" id="inputEmail2" name="inputEmail2" placeholder="example@gmail.com">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="Gender2" class="col-sm-3 col-form-label">Gender</label>
+                                                    <div class="col-sm-8">
+                                                        <select id="gender2" class="form-control" name="gender">
+                                                            <option>Choose...</option>
+                                                            <option value="0">Male</option>
+                                                            <option value="1">Female</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary" id="clickBtn" onclick="Update(document.getElementById('inputNIK2').value)">Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br/>
+<br/>
+
+
+<div class="row col-12 ">
+    <div class="col-xl-6 col-lg-5 ">
+        <div class="card shadow mb-md-4 ">
+
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Pie Chart</h6>
+            </div>
+
+            <div class="card-body">
+                <div class="chart-pie pt-0">
+                    <div id="chart"></div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="col-xl-5 col-lg-5 ">
+        <div class="card shadow mb-md-4">
+
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
+            </div>
+            <div class="card-body">
+                <div class="chart-bar">
+                    <div id="barchart"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

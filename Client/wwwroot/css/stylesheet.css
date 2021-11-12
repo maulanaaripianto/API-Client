@@ -1,0 +1,39 @@
+﻿.*{
+    box-sizing: border-box;
+}
+
+
+.footer {
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px;
+    position: fixed;
+    background-color: #FFC36D;
+}
+
+
+.container-txt {
+    font-family : Arial;
+    color:black;
+}
+
+/*.d-flex {
+    float: right;
+    margin-right: -25px;
+}*/
+
+.content {
+    text-align: justify;
+    margin-top: 80px;
+    margin-bottom:40px;
+    margin-left: 300px;
+}
+
+/*.content-two {
+    text-align: justify;
+}*/
+
+.nav-item:hover {
+    background-color: #FFD743;
+}
